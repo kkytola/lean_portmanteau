@@ -32,5 +32,6 @@ In the case of a metric space X, the main statement is the equivalence of the fo
 ## Perspectives
 
  * In the case of the real line, there are two additional useful characterizations: one in terms of cumulative distribution functions and another in terms of characteristic functions. Proving the equivalence with the former should be quite easy. Proving the equivalence with the latter requires Lévy's inversion theorem or some other suitable form of Fourier analysis of measures, and some form of tightness argument (Helly's selection theorem specific to the real line, or ideally Prokhorov's theorem).
+   * After proving the characterization of weak convergence on the real line with characteristic functions, the proof of the Central Limit Theorem should be quite doable.
  * In complete separable metric spaces X (or Polish spaces), the topology of weak convergence of Borel probability measures is metrizable by the Lévy-Prokhorov metric. Proving this should not be particularly difficult given Portmanteau's theorem above.
  * Proving Prokhorov's theorem would be much nicer!
