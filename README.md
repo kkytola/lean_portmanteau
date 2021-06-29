@@ -24,3 +24,13 @@ In the case of a metric space X, the main statement is the equivalence of the fo
  4. For any open set G in X, we have liminf P_n(G) >= P(G).
  5. For any closed set F in X, we have limsup P_n(F) <= P(F).
  6. For any Borel set B in X such that P(bdry B) = 0, we have lim P_n(B) = P(B).
+
+## Comments
+
+ * In fact the equivalence of 1-5 is proven for topological spaces X where the indicator of every closed set has a pointwise decreasing approximation by bounded continuous functions.
+
+## Perspectives
+
+ * In the case of the real line, there are two additional useful characterizations: one in terms of cumulative distribution functions and another in terms of characteristic functions. Proving the equivalence with the former should be quite easy. Proving the equivalence with the latter requires Lévy's inversion theorem or some other suitable form of Fourier analysis of measures, and some form of tightness argument (Helly's selection theorem specific to the real line, or ideally Prokhorov's theorem).
+ * In complete separable metric spaces X (or Polish spaces), the topology of weak convergence of Borel probability measures is metrizable by the Lévy-Prokhorov metric. Proving this should not be particularly difficult given Portmanteau's theorem above.
+ * Proving Prokhorov's theorem would be much nicer!
