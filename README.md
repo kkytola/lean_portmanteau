@@ -1,12 +1,16 @@
 # lean_portmanteau
 
-A Lean formalization of Portmanteau's theorem.
+A Lean formalization of Portmanteau Theorem.
 
 This was mainly an exercise for myself to get familiar with Lean and mathlib.
+
+
 
 ## The main definition
 
 Let X be a topological space. The "set" of Borel probability measures on X is equipped with the topology of weak convergence, defined as follows. The topology is induced by the mapping that takes a probability measure to the functional that takes a continuous bounded extended non-negative real valued function to its integral against the measure, when such functionals are first equipped with the topology of pointwise (testfunctionwise) convergence. This is contained in <portmanteau_definitions.lean>.
+
+
 
 ## The main statement
 
@@ -25,9 +29,13 @@ In the case of a metric space X, the main statement is the equivalence of the fo
  5. For any closed set F in X, we have limsup P_n(F) <= P(F).
  6. For any Borel set B in X such that P(bdry B) = 0, we have lim P_n(B) = P(B).
 
+
+
 ## Comments
 
  * In fact the equivalence of 1-5 is proven for topological spaces X where the indicator of every closed set has a pointwise decreasing approximation by bounded continuous functions.
+
+
 
 ## Perspectives
 
@@ -35,3 +43,6 @@ In the case of a metric space X, the main statement is the equivalence of the fo
    * After proving the characterization of weak convergence on the real line with characteristic functions, the proof of the Central Limit Theorem should be quite doable.
  * In complete separable metric spaces X (or Polish spaces), the topology of weak convergence of Borel probability measures is metrizable by the Lévy-Prokhorov metric. Proving this should not be particularly difficult given Portmanteau's theorem above.
  * Proving Prokhorov's theorem would be much nicer!
+
+
+

@@ -173,6 +173,9 @@ begin
 end
 
 
+end topology_of_weak_convergence
+
+
 
 section equivalent_conditions
 -- See <pormanteau_conclusions.lean> for the main theorems about the equivalence.
@@ -208,129 +211,6 @@ abbreviation portmanteau_borel {α : Type} [topological_space α]
 
 end equivalent_conditions
 
-
-end topology_of_weak_convergence
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/-
-
-section portmanteau_definitions
-
-
-
-
-notation `borel_measure`(α) := @measure_theory.measure α (borel α)
-notation `borel_set`(α) E := (borel α).measurable_set' E
-
-
-/-
-def bdd_ennrealval' {β : Type*} (f : β → ennreal) : Prop :=
-  ∃ (M : nnreal) , ∀ (b : β) , f(b) ≤ M
-
-def bdd_Rval' {β : Type*} (f : β → ℝ) : Prop :=
-  ∃ (M : ℝ) , ∀ (b : β) , abs(f(b)) ≤ M
--/
-
---abbreviation ulbdd_Rval {β : Type*} (f : β → ℝ) : Prop :=
---  ∃ (L U : ℝ) , ∀ (b : β) , L ≤ f(b) ∧ f(b) ≤ U
-
-/-
-def ulbdd_Rval' {β : Type*} (f : β → ℝ) : Prop :=
-  ∃ (L U : ℝ) , ∀ (b : β) , L ≤ f(b) ∧ f(b) ≤ U
--/
-
---lemma bdd_iff_Rval {β : Type*} (f : β → ℝ) :
---  bdd_Rval f ↔ ulbdd_Rval f := sorry
-
---notation `∫` binders `, ` r:(scoped:60 f, f) ` ∂` μ:70 := (@lintegral α (borel(α)) μ r)
---notation `∫⁻` binders `, ` r:(scoped:60 f, lintegral volume f) := r
---notation `∫⁻` binders ` in ` s `, ` r:(scoped:60 f, f) ` ∂` μ:70 :=
---  lintegral (measure.restrict μ s) r
---notation `∫⁻` binders ` in ` s `, ` r:(scoped:60 f, lintegral (measure.restrict volume s) f) := r
-
-
-notation `integrate` f ` ∂` μ := lintegral μ f --(@lintegral α (borel(α)) μ f)
-
-variables {α : Type*} [topological_space α]
-
-abbreviation enn_integrate (f : α → ennreal) (μ : borel_measure(α)) :=
-  (@lintegral α (borel(α)) μ f)
-
-/-
-def enn_integrate (f : α → ennreal) (μ : borel_measure(α)) :=
-  (@lintegral α (borel(α)) μ f)
--/
-
---variables (ν : borel_measure(α)) (f : α → ennreal)
---#check ( enn_integrate f ν )
---#check (@lintegral α (borel(α)) ν f)
---#check ( integrate f ∂ν )
---#check ( integrate f ∂ν )
-
-
-abbreviation portmanteau_continuous_cond (μseq : ℕ → (borel_measure(α))) (μ : borel_measure(α)) : Prop :=
-  ∀ (f : α → ennreal) , (continuous f) → (bdd_ennrealval f) →
-    lim_enn (λ n , (enn_integrate f (μseq(n))) ) (enn_integrate f μ) 
-
-abbreviation portmanteau_continuous_cond_Rval (μseq : ℕ → (borel_measure(α))) (μ : borel_measure(α)) : Prop :=
-  ∀ (f : α → ℝ) , (continuous f) → (bdd_Rval f) →
-    lim_R (λ n , (@integral α ℝ (borel(α)) _ _ _ _ _ _ (μseq(n)) f)) (@integral α ℝ (borel(α)) _ _ _ _ _ _ μ f)
-
-abbreviation portmanteau_open_cond (μseq : ℕ → (borel_measure(α))) (μ : borel_measure(α)) : Prop :=
-  ∀ (G : set α) , (is_open G) → μ(G) ≤ liminf_enn (λ n , (μseq(n))(G))
-
-abbreviation portmanteau_closed_cond (μseq : ℕ → (borel_measure(α))) (μ : borel_measure(α)) : Prop :=
-  ∀ (F : set α) , (is_closed F) → limsup_enn (λ n , (μseq(n))(F)) ≤ μ(F)
-
-abbreviation portmanteau_borel_cond (μseq : ℕ → (borel_measure(α))) (μ : borel_measure(α)) : Prop :=
-  ∀ (E : set α) , (borel_set(α) E) → (μ(frontier E) = 0)
-    → (lim_enn (λ n , (μseq(n))(E)) (μ(E)))
-
-def portmanteau_continuous_cond' (μseq : ℕ → (borel_measure(α))) (μ : borel_measure(α)) : Prop :=
-  ∀ (f : α → ennreal) , (continuous f) → (bdd_ennrealval f) →
-    lim_enn (λ n , (enn_integrate f (μseq(n))) ) (enn_integrate f μ) 
-
-def portmanteau_open_cond' (μseq : ℕ → (borel_measure(α))) (μ : borel_measure(α)) : Prop :=
-  ∀ (G : set α) , (is_open G) → μ(G) ≤ liminf_enn (λ n , (μseq(n))(G))
-
-def portmanteau_closed_cond' (μseq : ℕ → (borel_measure(α))) (μ : borel_measure(α)) : Prop :=
-  ∀ (F : set α) , (is_closed F) → limsup_enn (λ n , (μseq(n))(F)) ≤ μ(F)
-
-def portmanteau_borel_cond' (μseq : ℕ → (borel_measure(α))) (μ : borel_measure(α)) : Prop :=
-  ∀ (E : set α) , (borel_set(α) E) → (μ(frontier E) = 0)
-    → (lim_enn (λ n , (μseq(n))(E)) (μ(E)))
-
-
-
-end portmanteau_definitions
-
--/
 
 
 end portmanteau
