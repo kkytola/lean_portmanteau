@@ -469,7 +469,7 @@ end
 
 
 lemma liminf_const_sub (a : ennreal) (a_ne_top : a ≠ ⊤) (s : ℕ → ennreal) :
-  liminf_enn (λ n , (a - s(n))) = a - limsup_enn s :=
+  liminf at_top (λ n , (a - s(n))) = a - limsup at_top s :=
 begin
   have cont : continuous (λ (x : ennreal) , a-x ) := continuous_const_sub_ennreal a a_ne_top ,
   set f := λ (x : ennreal) , a-x with hf ,
@@ -484,7 +484,7 @@ end
 
 
 lemma limsup_const_sub (a : ennreal) (a_ne_top : a ≠ ⊤) (s : ℕ → ennreal) :
-  limsup_enn (λ n , (a - s(n))) = a - liminf_enn s :=
+  limsup at_top (λ n , (a - s(n))) = a - liminf at_top s :=
 begin
   have cont : continuous (λ (x : ennreal) , a-x ) := continuous_const_sub_ennreal a a_ne_top ,
   set f := λ (x : ennreal) , a-x with hf ,
