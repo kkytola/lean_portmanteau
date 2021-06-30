@@ -12,8 +12,6 @@ import topology.metric_space.basic
 import topology.instances.real
 import topology.instances.ennreal
 import order.liminf_limsup
---import portmanteau_limsup_lemmas
-
 
 
 noncomputable theory
@@ -30,34 +28,12 @@ namespace portmanteau
 
 
 
-abbreviation lim_R (s : ℕ → ℝ) (l : ℝ) : Prop := tendsto s at_top (𝓝 l)
-
-abbreviation lim_enn (s : ℕ → ennreal) (l : ennreal) : Prop := tendsto s at_top (𝓝 l)
-
 abbreviation bdd_Rval {β : Type*} (f : β → ℝ) : Prop :=
   ∃ (M : ℝ) , ∀ (b : β) , abs(f(b)) ≤ M
 
 abbreviation bdd_ennval {α : Type*} (f : α → ennreal) : Prop :=
   ∃ (M : nnreal) , ∀ (a : α) , f(a) ≤ M
 
-
-/-
-lemma bdd_ennval_of_le_cst' {α : Type*} {f : α → ennreal} {c : nnreal} (h : f ≤ (λ a , c)) :
-  bdd_ennval f := by { use c , exact h , }
-
-
-lemma bdd_ennval_of_le_cst {α : Type*} {f : α → ennreal} {c : ennreal} (h : f ≤ (λ a , c)) (hc : c ≠ ⊤) :
-  bdd_ennval f :=
-begin
-  use c.to_nnreal ,
-  intros a , 
-  have key := h a , 
-  rwa ← ennreal.coe_to_nnreal hc at key ,
-end
--/
-
-
-lemma lim_R_rw (s : ℕ → ℝ) (l : ℝ) : lim_R s l = tendsto s at_top (𝓝 l) := by refl
 
 
 section test_functions_for_weak_convergence
@@ -205,13 +181,13 @@ section equivalent_conditions
 abbreviation portmanteau_continuous_ennval {α : Type} [topological_space α]
   (μseq : ℕ → @measure_theory.measure α (borel α)) (μ : @measure_theory.measure α (borel α)) : Prop :=
     ∀ (f : α → ennreal) , (continuous f) → (bdd_ennval f) →
-      lim_enn (λ n , (@lintegral α (borel(α)) (μseq(n)) f) ) (@lintegral α (borel(α)) μ f)
+      tendsto (λ n , (@lintegral α (borel(α)) (μseq(n)) f) ) at_top (𝓝 (@lintegral α (borel(α)) μ f))
 
 
 abbreviation portmanteau_continuous_Rval {α : Type} [topological_space α]
   (μseq : ℕ → @measure_theory.measure α (borel α)) (μ : @measure_theory.measure α (borel α)) : Prop :=
     ∀ (f : α → ℝ) , (continuous f) → (bdd_Rval f) →
-      lim_R (λ n , (@integral α ℝ (borel(α)) _ _ _ _ _ _ (μseq(n)) f)) (@integral α ℝ (borel(α)) _ _ _ _ _ _ μ f)
+      tendsto (λ n , (@integral α ℝ (borel(α)) _ _ _ _ _ _ (μseq(n)) f)) at_top (𝓝 (@integral α ℝ (borel(α)) _ _ _ _ _ _ μ f))
 
 
 abbreviation portmanteau_open {α : Type} [topological_space α]
@@ -227,7 +203,7 @@ abbreviation portmanteau_closed {α : Type} [topological_space α]
 abbreviation portmanteau_borel {α : Type} [topological_space α]
   (μseq : ℕ → @measure_theory.measure α (borel α)) (μ : @measure_theory.measure α (borel α)) : Prop :=
     ∀ (E : set α) , ((borel α).measurable_set' E) → (μ(frontier E) = 0)
-      → (lim_enn (λ n , (μseq(n))(E)) (μ(E)))
+      → (tendsto (λ n , (μseq(n))(E)) at_top (𝓝 (μ(E))))
 
 
 end equivalent_conditions
