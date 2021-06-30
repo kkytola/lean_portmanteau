@@ -32,6 +32,9 @@ abbreviation lim_enn (s : ℕ → ennreal) (l : ennreal) : Prop := tendsto s at_
 
 lemma lim_R_rw (s : ℕ → ℝ) (l : ℝ) : lim_R s l = tendsto s at_top (𝓝 l) := by refl
 
+lemma liminf_enn_rw {s : ℕ → ennreal} : liminf_enn s = liminf at_top s := by refl
+
+lemma limsup_enn_rw {s : ℕ → ennreal} : limsup_enn s = limsup at_top s := by refl
 
 
 section portmanteau_limsup_liminf_lemmas
