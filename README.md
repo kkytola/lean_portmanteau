@@ -1,6 +1,6 @@
 # lean_portmanteau
 
-A Lean formalization of Portmanteau Theorem.
+A Lean formalization of the Portmanteau Theorem.
 
 This was mainly an exercise for myself to get familiar with Lean and mathlib.
 
