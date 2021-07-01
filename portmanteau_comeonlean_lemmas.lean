@@ -28,15 +28,6 @@ section portmanteau_comeonlean_lemmas
 
 
 
-/-
-abbreviation lim_R (s : ℕ → ℝ) (l : ℝ) : Prop := tendsto s at_top (𝓝 l)
-
-abbreviation lim_enn (s : ℕ → ennreal) (l : ennreal) : Prop := tendsto s at_top (𝓝 l)
-
-lemma lim_R_rw (s : ℕ → ℝ) (l : ℝ) : lim_R s l = tendsto s at_top (𝓝 l) := by refl
--/
-
-
 lemma bdd_ennval_of_le_cst' {α : Type*} {f : α → ennreal} {c : nnreal} (h : f ≤ (λ a , c)) :
   bdd_ennval f := by { use c , exact h , }
 
