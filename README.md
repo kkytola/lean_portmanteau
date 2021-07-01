@@ -1,6 +1,6 @@
 # lean_portmanteau
 
-A Lean formalization of Portmanteau Theorem.
+A Lean formalization of the Portmanteau Theorem.
 
 This was mainly an exercise for myself to get familiar with Lean and mathlib.
 
@@ -8,13 +8,13 @@ This was mainly an exercise for myself to get familiar with Lean and mathlib.
 
 ## The main definition
 
-Let X be a topological space. The "set" of Borel probability measures on X is equipped with the topology of weak convergence, defined as follows. The topology is induced by the mapping that takes a probability measure to the functional that takes a continuous bounded extended non-negative real valued function to its integral against the measure, when such functionals are first equipped with the topology of pointwise (testfunctionwise) convergence. This is contained in <portmanteau_definitions.lean>.
+Let X be a topological space. The "set" of Borel probability measures on X is equipped with the topology of weak convergence, defined as follows. The topology is induced by the mapping that takes a probability measure to the functional that takes a continuous bounded extended non-negative real valued function to its integral against the measure, when such functionals are first equipped with the topology of pointwise (testfunctionwise) convergence. This is contained in **<portmanteau_definitions.lean>**.
 
 
 
 ## The main statement
 
-The main statements are summarized (and its proof finished) in <portmanteau_conclusions.lean>.
+The main statements are summarized (and its proof finished) in **<portmanteau_conclusions.lean>**.
 
 In the case of a general topological space X, the main statement is the equivalence of the following conditions for a sequence (P_n) of Borel probability measures on X:
  1. The sequence (P_n) converges in the topology of weak convergence to P.
